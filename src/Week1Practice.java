@@ -1,4 +1,4 @@
-package week1;
+
 
 public class Week1Practice {
 	

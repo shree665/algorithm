@@ -1,13 +1,9 @@
-package week1;
 
-import edu.princeton.cs.introcs.StdIn;
-import edu.princeton.cs.introcs.StdOut;
-
-public class QuickFind {
+public class QuickUnionWithPathCompression {
 	private int[] id;
 	private int count;
 	
-	public QuickFind(int n){
+	public QuickUnionWithPathCompression(int n){
 		count = n;
 		id = new int[n];
 		for (int i = 0; i < n; i++) {
@@ -24,29 +20,31 @@ public class QuickFind {
 	}
 	
 	public int find(int p){ 
-		return id[p];
+		while (p != id[p]) {
+			id[p] = id[id[p]]; //line for compression
+			p = id[p];
+		}
+		return p;
 	}
 	
 	public void union(int p, int q){
-		//put p and q into the same component
-		int pID = find(p);
-		int qID = find(q);
+		//give p and q the same root
+		int i = find(p);
+		int j = find(q);
 		
-		if (pID == qID) {
+		//nothing to do if p and q are already in the same component
+		if (i == j) {
 			return;
+		} else {
+			id[i] = j;
 		}
 		
-		for (int i = 0; i < id.length; i++) {
-			if (id[i] == pID) {
-				id[i] = qID;
-			}
-			count--;
-		}
+		count--;
 	}
 	
 	public static void main(String[] args){
 		int n = StdIn.readInt();
-		QuickFind qf = new QuickFind(n);
+		QuickUnionWithPathCompression qf = new QuickUnionWithPathCompression(n);
 		while(!StdIn.isEmpty()){
 			int p = StdIn.readInt();
 			int q = StdIn.readInt();
