@@ -1,13 +1,34 @@
+/**
+ * This class tests a n by n tiles to see if there are enough open
+ * tiles to connect the top of the tiles with the bottom of the
+ * tiles. It uses an two dimensional array of boolean to represent
+ * the tiles, and supplied WeightedQuickUnionUF object to keep track 
+ * of the tiles between open tiles in the grid.
+ *
+ * The percolates() method returns true if a path can be found from a
+ * tile at the top to the bottom in the tiles. This class is dependent on 
+ * the WeightedQuickUnionUF.java. It can't be done without it.
+ *
+ */
 
 public class Percolation {
 	
 	//local variables
-	private int size;
-	private WeightedQuickUnionUF weightedQuickUnion;
+	private int size; //dimensions of the n by n tiles used in the simulation
+	private WeightedQuickUnionUF weightedQuickUnion; //supplied object and will be used to do union(), find() and count
+	
+	/**
+	 * to keep track of the tiles are open or full. Starts with full/closed i.e. false
+	 */
 	private boolean[][] tiles;
 	
 	/**
-	 * Constructor to create n by n closed tiles
+	 * Constructor to initializes n by n two dimensional array of tiles which
+	 * has all closed tiles. The WeightedQuickUnionUF object is also 
+	 * initialized to a size that will contain one element for each tile 
+	 * in the tiles (n * n), plus two more to represent "imaginary" tiles 
+	 * at the top and bottom of the tiles that will make it easier to 
+	 * test the tiles for percolation.
 	 * 
 	 * @param n - number of tiles
 	 */
@@ -24,11 +45,14 @@ public class Percolation {
 	}
 	
 	/**
-	 * Open the tile at coordinates i,j if the tile is not open already
+	 * Open the tile at coordinates i,j if the tile is not open already using
+	 * union method of WeightedQuickUnionUF object
 	 * 
 	 * @param i - row index
 	 * @param j - column index
 	 * @return nothing
+	 * @throws IndexOutOfBoundsException if the values for i and j are 
+     *          off the tile
 	 */
 	public void open(int i, int j){
 		
@@ -94,6 +118,8 @@ public class Percolation {
 	 * @param i - index of row
 	 * @param j - index of column
 	 * @return true if the tile at [i][j] open, otherwise return false
+	 * @throws  IndexOutOfBoundsException if the values for i and j are 
+     *          off the tile
 	 */
 	public boolean isOpen(int i, int j){
 		checkCoordinateRange(i, j);
@@ -106,6 +132,8 @@ public class Percolation {
 	 * @param i - row index
 	 * @param j - column index
 	 * @return true if the tile is full
+	 * @throws  IndexOutOfBoundsException if the values for i and j are 
+     *          off the tile
 	 */
 	public boolean isFull(int i, int j){
 		checkCoordinateRange(i, j);
@@ -113,11 +141,21 @@ public class Percolation {
 	}
 	
 	/**
-	 * @return true if the system percolates
+	 * Checks to see if the imaginary site
+     * at location 0 in the union-find object is in the same set as 
+     * the imaginary site at location N*N+1 in the union-find object.
+     * These two sites are imaginary; they are not actually represented
+     * in the grid, although they are represented in the union-find
+     * object. They are "located" at the top and the bottom of the 
+     * grid, and each connects to all the sites above/below it.
+     * 
+     * checks to see if the imaginary tile at top in the union-find object is in the same set
+     * as the imaginary tile at bottom in the union-find obect.
+     * 
+	 * @return true if the path between top to bottom exists
 	 */
 	public boolean percolates(){
 		int coordinateId = size * size;
         return weightedQuickUnion.connected(coordinateId, coordinateId + 1);
 	}
-
 }
