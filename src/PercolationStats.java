@@ -10,7 +10,7 @@ public class PercolationStats {
 	// perform T independent experiments on an N-by-N grid
     public PercolationStats(int n, int t) {
         if (n <= 0 || t <= 0) {
-            throw new IllegalArgumentException("Please make sure enter valid inputs");
+            throw new IllegalArgumentException("Please make sure to enter valid inputs");
         }
         
         int allTiles = n * n;

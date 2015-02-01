@@ -154,16 +154,8 @@ public class Percolation {
 	}
 	
 	/**
-	 * Checks to see if the imaginary site
-     * at location 0 in the union-find object is in the same set as 
-     * the imaginary site at location N*N+1 in the union-find object.
-     * These two sites are imaginary; they are not actually represented
-     * in the grid, although they are represented in the union-find
-     * object. They are "located" at the top and the bottom of the 
-     * grid, and each connects to all the sites above/below it.
-     * 
      * checks to see if the imaginary tile at top in the union-find object is in the same set
-     * as the imaginary tile at bottom in the union-find obect.
+     * as the imaginary tile at bottom in the union-find object.
      * 
 	 * @return true if the path between top to bottom exists
 	 */
