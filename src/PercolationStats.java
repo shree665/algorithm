@@ -66,7 +66,7 @@ public class PercolationStats {
         
         PercolationStats ps = new PercolationStats(N, T);
         StdOut.println("mean = " + ps.mean());
-        StdOut.println("tddev = " + ps.stddev());
+        StdOut.println("stddev = " + ps.stddev());
         StdOut.println("95% confidence interval = " + ps.confidenceLo() + ", " 
                                + ps.confidenceHi());
     }

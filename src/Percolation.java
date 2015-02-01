@@ -1,9 +1,9 @@
 /**
  * This class tests a n by n tiles to see if there are enough open
  * tiles to connect the top of the tiles with the bottom of the
- * tiles. It uses an two dimensional array of boolean to represent
+ * tiles. It uses a two dimensional array of boolean to represent
  * the tiles, and supplied WeightedQuickUnionUF object to keep track 
- * of the tiles between open tiles in the grid.
+ * of the tiles between open tiles.
  *
  * The percolates() method returns true if a path can be found from a
  * tile at the top to the bottom in the tiles. This class is dependent on 
@@ -14,17 +14,19 @@
 public class Percolation {
 	
 	//local variables
-	private int size; //dimensions of the n by n tiles used in the simulation
-	private WeightedQuickUnionUF weightedQuickUnion; //supplied object and will be used to do union(), find() and count
 	
-	/**
-	 * to keep track of the tiles are open or full. Starts with full/closed i.e. false
-	 */
+	//dimensions of the n by n tiles used in the simulation
+	private int size;
+	
+	//supplied object and will be used to do union(), find() and count
+	private WeightedQuickUnionUF weightedQuickUnion; 
+	
+	//to keep track of the tiles are open or full. Starts with full/closed i.e. false
 	private boolean[][] tiles;
 	
 	/**
-	 * Constructor to initializes n by n two dimensional array of tiles which
-	 * has all closed tiles. The WeightedQuickUnionUF object is also 
+	 * Constructor to initialize n by n two dimensional array of tiles which
+	 * has all closed tiles at start. The WeightedQuickUnionUF object is also 
 	 * initialized to a size that will contain one element for each tile 
 	 * in the tiles (n * n), plus two more to represent "imaginary" tiles 
 	 * at the top and bottom of the tiles that will make it easier to 
@@ -97,10 +99,21 @@ public class Percolation {
 	}
 	
 	
+	/**
+	 * Returns a value value of provided x and y index
+	 * 
+	 * @param i - x index
+	 * @param j - y index
+	 * @return integer value of x and y index
+	 */
 	private int coordicnatesToId(int i, int j) {
         return i * size + j;
     }
 	
+	/**
+	 * @param i - x index
+	 * @param j - y index
+	 */
 	private void checkCoordinateRange(int i, int j) {
 		if (i < 1 || i > size) {
 	          throw new IndexOutOfBoundsException("row index i is out of bounds.");
