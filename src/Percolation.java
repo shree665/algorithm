@@ -34,7 +34,7 @@ public class Percolation {
 	 * 
 	 * @param n - number of tiles
 	 */
-	public Percolation(int n){
+	public Percolation(int n) {
 		this.size = n;
 		tiles = new boolean[n][n];
 		this.weightedQuickUnion = new WeightedQuickUnionUF(size * size + 2);
@@ -56,7 +56,7 @@ public class Percolation {
 	 * @throws IndexOutOfBoundsException if the values for i and j are 
      *          off the tile
 	 */
-	public void open(int i, int j){
+	public void open(int i, int j) {
 		
 		checkCoordinateRange(i,j);
 		
@@ -134,7 +134,7 @@ public class Percolation {
 	 * @throws  IndexOutOfBoundsException if the values for i and j are 
      *          off the tile
 	 */
-	public boolean isOpen(int i, int j){
+	public boolean isOpen(int i, int j) {
 		checkCoordinateRange(i, j);
         return tiles[i-1][j-1];
 	}
@@ -148,7 +148,7 @@ public class Percolation {
 	 * @throws  IndexOutOfBoundsException if the values for i and j are 
      *          off the tile
 	 */
-	public boolean isFull(int i, int j){
+	public boolean isFull(int i, int j) {
 		checkCoordinateRange(i, j);
         return isOpen(i, j);
 	}
@@ -159,7 +159,7 @@ public class Percolation {
      * 
 	 * @return true if the path between top to bottom exists
 	 */
-	public boolean percolates(){
+	public boolean percolates() {
 		int coordinateId = size * size;
         return weightedQuickUnion.connected(coordinateId, coordinateId + 1);
 	}
