@@ -1,40 +1,164 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 
 public class Deque<Item> implements Iterable<Item> {
+	
+	private int n;
+	private Node first, last;
+	
+	private class Node {
+		Item item;
+		Node previous;
+		Node next;
+	}
 
+	// construct an empty dequeue
 	public Deque() {
-		// construct an empty deque
+		first = last = null;
+		n = 0;
 	}
 	
+	// is the dequeue empty?
 	public boolean isEmpty() {
-		return false;
-		// is the deque empty?
+		return n == 0;
 	}
+	
+	// return the number of items on the deque
 	public int size() {
-		return 0;
-		// return the number of items on the deque
+		return n;
 	}
+	
+	// insert the item at the front
 	public void addFirst(Item item) {
-		// insert the item at the front
+		//adding item to the end of the queue
+		checkItem(item);
+		Node oldfirst = first;
+		first = new Node();
+		first.item = item;
+		first.previous = null;
+		if (isEmpty()) {
+			last = first;
+			first.next = null;	
+		} else {
+			first.next = oldfirst;
+			oldfirst.previous = first;
+		}
+		
+		n++;
 	}
+	
+	private void checkItem(Item item) {
+		if (item == null) {
+			throw new NullPointerException("The value that you trying to put is null");
+		}
+	}
+
+	// insert the item at the end
 	public void addLast(Item item) {
-		// insert the item at the end
+		//adding item to the end of the queue
+		checkItem(item);
+		Node oldlast = last;
+		last = new Node();
+		last.item = item;
+		last.next = null;
+		if (isEmpty()) {
+			first = last;
+			last.previous = null;
+		} else {
+			last.previous = oldlast;
+			oldlast.next = last;
+		}
+		
+		n++;
 	}
+	
+	// delete and return the item at the front
 	public Item removeFirst() {
-		return null;
-		// delete and return the item at the front
+		//removing item from beginning
+		anyItem();
+		Item item = first.item;
+		first = first.next;
+		n--;
+		if (isEmpty()) {
+			first = last = null;
+		} else {
+			first.previous = null;
+		}
+		return item;
 	}
+	
+	private void anyItem() {
+		if (isEmpty()) {
+			throw new NoSuchElementException("Linked List is empty");
+		}
+	}
+
+	// delete and return the item at the end
 	public Item removeLast() {
-		return null;
-		// delete and return the item at the end
+		anyItem();
+		Item item = last.item;
+		last = last.previous;
+		n--;
+		if (isEmpty()) {
+			first = last = null;
+		} else {
+			last.next = null;
+		}
+		return item;
 	}
+	
+	// return an iterator over items in order from front to end
 	public Iterator<Item> iterator() {
-		return null;
-		// return an iterator over items in order from front to end
+		return new ListIterator();
+		
 	}
+	
+	//private class to iterate over the deque datatype
+	private class ListIterator implements Iterator<Item> {
+        
+		//node to track the current position
+		private Node current;
+
+        public ListIterator() {
+            current = first; 
+        }
+
+        public boolean hasNext() {
+        	return current != null;
+        }
+        
+        public void remove(){ 
+        	throw new UnsupportedOperationException("Remove operation is not supported");
+        }
+
+        public Item next() {
+        	if (!hasNext()) {
+				throw new NoSuchElementException("There are not any elements in the queue");
+			}
+            Item item = current.item;
+            current = current.next; 
+            return item;
+        }
+	}
+	
+	//for unit test purpose
 	public static void main(String[] args) {
-		// unit testing
+		Deque<String> q = new Deque<String>();
+        while (!StdIn.isEmpty()) {
+            String item = StdIn.readString();
+            if (!item.equals("-") && !item.equals("#")){
+            	q.addLast(item);
+            //	q.addFirst(item);
+            }
+            else if (item.equals("-")){
+            	StdOut.print(q.removeFirst() + " ");
+            }
+            else if(item.equals("#")){
+            	StdOut.print(q.removeLast() + " ");
+            }
+        }
+        StdOut.println("(" + q.size() + " left on queue)");
 	}
 
 }

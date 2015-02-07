@@ -46,4 +46,14 @@ public class InsertionSort {
 		}
 		return true;
 	}
+	
+	public static void main(String[] args) {
+		//read strings from standard input, sort them and print them
+		@SuppressWarnings("deprecation")
+		String[] a = In.readStrings();
+		sort(a);
+		assert isSorted(a);
+		show(a);
+
+	}
 }
