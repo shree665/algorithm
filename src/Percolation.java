@@ -79,12 +79,12 @@ public class Percolation {
         
         //opening right of Y
         if (rightSideOfYCoordinate <= size && isOpen(i, rightSideOfYCoordinate)) {
-        	weightedQuickUnion.union(coordicnatesToId(i - 1, j - 1), coordicnatesToId(i - 1, rightSideOfYCoordinate - 1));
+        	weightedQuickUnion.union(coordicnatesToId(i - 1, j - 1), coordicnatesToId(i - 1, rightSideOfYCoordinate + 1));
         }
         
         //Opening top of X
         if (uperSideOfXCoordinate > 0 && isOpen(uperSideOfXCoordinate, j)) {
-        	weightedQuickUnion.union(coordicnatesToId(i - 1, j - 1), coordicnatesToId(uperSideOfXCoordinate - 1, j - 1));
+        	weightedQuickUnion.union(coordicnatesToId(i - 1, j - 1), coordicnatesToId(uperSideOfXCoordinate + 1, j - 1));
         }
         
         //opening bottom of X
