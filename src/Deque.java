@@ -1,9 +1,14 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-
+/*
+ * A double-ended queue or dequeue (pronounced "deck") is a generalization of
+ * a queue that supports inserting and removing items from either the front or the 
+ * back of the data structure
+ */
 public class Deque<Item> implements Iterable<Item> {
 	
+	//local variables
 	private int n;
 	private Node first, last;
 	
@@ -144,19 +149,22 @@ public class Deque<Item> implements Iterable<Item> {
 	
 	//for unit test purpose
 	public static void main(String[] args) {
+		StdOut.println("########## Deque ##########");
 		Deque<String> q = new Deque<String>();
+		StdOut.println("Enter element to push, or \"-\" to pop from first, or \"#\" to pop from last to sample");
         while (!StdIn.isEmpty()) {
             String item = StdIn.readString();
             if (!item.equals("-") && !item.equals("#")){
             	q.addLast(item);
-            //	q.addFirst(item);
+              //q.addFirst(item);
             }
             else if (item.equals("-")){
-            	StdOut.print(q.removeFirst() + " ");
+            	StdOut.println(q.removeFirst() + " ");
             }
             else if(item.equals("#")){
-            	StdOut.print(q.removeLast() + " ");
+            	StdOut.println(q.removeLast() + " ");
             }
+            StdOut.println("(" + q.size() + " left on queue)");
         }
         StdOut.println("(" + q.size() + " left on queue)");
 	}

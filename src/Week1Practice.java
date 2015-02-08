@@ -51,15 +51,19 @@ public class Week1Practice {
 	}
 	
 	public boolean isPrime(int n){
-		if (n < 2) {
+		
+		//check if the number is mulitple of 2
+		if (n % 2 == 0) {
 			return false;
 		}
 		else {
-			for (int i = 0; i * i < n; i++) {
+			//checks all the odds
+			for (int i = 3; i*i <= n; i+=2) {
 				if (n % i == 0) {
 					return false;
 				}
 			}
+			System.out.println(n);
 			return true;
 		}
 	}
@@ -103,5 +107,16 @@ public class Week1Practice {
 		return true;
 	}
 	
+	public static void main(String[] args) {
+		int[] a = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24};
+		Week1Practice wp = new Week1Practice();
+		int count = 0;
+		for (int i = 0; i < a.length; i++) {
+			if(wp.isPrime(a[i])) {
+				count++;
+			}
+		}
+		System.out.println("Total prime number on array is: "+count);
+	}
 	
 }
