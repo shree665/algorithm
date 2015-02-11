@@ -8,6 +8,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 	private int n = 0;
 	
 	//construct an empty randomized queue
+	@SuppressWarnings("unchecked")
 	public RandomizedQueue() {
 		 queue = (Item[]) new Object[1];
 	 }
@@ -31,6 +32,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		queue[n++] = item;
 	 }
 	 
+	@SuppressWarnings("unchecked")
 	private void resize(int max) {
 		//move stack to a new array of size max
 		Item[] temp = (Item[]) new Object[max];
@@ -94,7 +96,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 	//private class to iterate over the RandomQueue data type
 	private class arrayIterator implements Iterator<Item> {
         
-		//node to track the current position
+		//to track the current position
 		private int currentIndex;
 
         public arrayIterator() {
@@ -102,7 +104,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         }
 
         public boolean hasNext() {
-        	return currentIndex > n;
+        	return currentIndex < n;
         }
         
         public void remove(){ 
