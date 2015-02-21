@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="Collinear Points"/>
+	<classpathentry kind="src" path="Percolation"/>
+	<classpathentry kind="src" path="Randomized Queues and Deques"/>
+	<classpathentry kind="src" path="Sorting Algorithms"/>
+	<classpathentry kind="src" path="Connectivity Algorithms"/>
+	<classpathentry kind="src" path="Data Structures"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/Users/shree665/Desktop/Algorithm/algs4.jar"/>
 	<classpathentry kind="lib" path="/Users/shree665/Desktop/Algorithm/stdlib.jar"/>

@@ -39,24 +39,42 @@ public class Point implements Comparable<Point> {
         StdDraw.line(this.x, this.y, that.x, that.y);
     }
 
-    // slope between this point and that point
+    /**
+     * slope between this point and that point
+     * The slopeTo() method should return the slope between the invoking point (x0, y0) and 
+     * the argument point (x1, y1), which is given by the formula (y1 − y0) / (x1 − x0). 
+     * Treat the slope of a horizontal line segment as positive zero; treat the slope of a 
+     * vertical line segment as positive infinity; treat the slope of a degenerate line segment 
+     * (between a point and itself) as negative infinity
+     * @param that point
+     * @return double
+     */
     public double slopeTo(Point that) {
         /* YOUR CODE HERE */
-    	if(that.y == this.y && that.x == this.x) {
+    	int dx = that.x - this.x;  
+        int dy = that.y - this.y; 
+    	if(dx == 0 && dy == 0) {
     		return Double.NEGATIVE_INFINITY;
     	}
-    	else if(that.y == this.y) {
+    	else if(dy == 0) {
     		return 0.0;
     	}
-        else if(that.x == this.x) {
+        else if(dx == 0) {
         	return Double.POSITIVE_INFINITY;
         } else {
-        	return ((double)(that.y - this.y))/((that.x - this.x));
+        	return ((double) dy/dx);
         }
     }
 
-    // is this point lexicographically smaller than that one?
-    // comparing y-coordinates and breaking ties by x-coordinates
+    /**
+     * The compareTo() method should compare points by their y-coordinates, 
+     * breaking ties by their x-coordinates. Formally, the invoking point (x0, y0) 
+     * is less than the argument point (x1, y1) if and only if either y0 < y1 or if y0 = y1 and x0 < x1.
+     * is this point lexicographically smaller than that one?
+     * 
+     * @param Point
+     * @return int
+     */
     public int compareTo(Point that) {
         /* YOUR CODE HERE */
     	if(this.y > that.y) {
@@ -80,6 +98,13 @@ public class Point implements Comparable<Point> {
         return "(" + x + ", " + y + ")";
     }
     
+    /**
+     * The SLOPE_ORDER comparator compares points by the slopes they make with the invoking point 
+     * (x0, y0). Formally, the point (x1, y1) is less than the point (x2, y2) if and only if the 
+     * slope (y1 − y0) / (x1 − x0) is less than the slope (y2 − y0) / (x2 − x0). Treat horizontal, 
+     * vertical, and degenerate line segments as in the slopeTo() method
+     *
+     */
     private class SlopeComparator implements Comparator<Point> {
 		@Override
 		public int compare(Point o1, Point o2) {

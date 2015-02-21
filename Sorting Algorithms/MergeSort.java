@@ -49,6 +49,7 @@ public class MergeSort {
 		return v.compareTo(w) < 0;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) {
 		Comparable[] a = {76, 33, 95, 18, 87, 12, 70, 69, 22, 60, 11, 59};
 		MergeSort.sort(a);
