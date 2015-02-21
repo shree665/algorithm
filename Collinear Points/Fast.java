@@ -2,7 +2,6 @@ import java.util.Arrays;
 
 
 public class Fast {
-	
 	public static void main(String[] args) {
 		//input file name from command line argument
 		In input = new In(args[0]); 
@@ -11,7 +10,7 @@ public class Fast {
 		int n = input.readInt();
        
 		//we need more than 4 points
-		if (n < 4){  
+		if (n < 4) {  
            return;  
 		} 
         
@@ -40,7 +39,12 @@ public class Fast {
 			Point originPoint = myPointArray[i];
 			Point[] myOtherPoints = new Point[n-1];
 			for (int j = i+1; j < myPointArray.length; j++) {
-				myOtherPoints[j] = myPointArray[j];
+				if (j < i) {
+					myOtherPoints[j] = myPointArray[j];
+				}
+				if (j > i) {
+					myOtherPoints[j-1] = myPointArray[j];
+				}
 			}
 			//Arrays.sort(myPointArray, i + 1, n, myPointArray[i].SLOPE_ORDER);
 			Arrays.sort(myOtherPoints, originPoint.SLOPE_ORDER);
