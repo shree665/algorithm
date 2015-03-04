@@ -8,6 +8,7 @@
 	<classpathentry kind="src" path="Connectivity Algorithms"/>
 	<classpathentry kind="src" path="Data Structures"/>
 	<classpathentry kind="src" path="8 Puzzle"/>
+	<classpathentry kind="src" path="Kd Trees"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/Users/shree665/Desktop/Algorithms/algs4.jar"/>
 	<classpathentry kind="lib" path="/Users/shree665/Desktop/Algorithms/stdlib.jar"/>
