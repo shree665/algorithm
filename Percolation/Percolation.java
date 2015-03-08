@@ -13,9 +13,10 @@
 
 public class Percolation {
 	
-	//local variables
-	
-	//dimensions of the n by n tiles used in the simulation
+	/**
+	 * local variables
+	 * dimensions of the n by n tiles used in the simulation
+	 */
 	private int size;
 	
 	//supplied object and will be used to do union(), find() and count
@@ -37,13 +38,8 @@ public class Percolation {
 	public Percolation(int n) {
 		this.size = n;
 		tiles = new boolean[n][n];
+		// 2 extra tiles for virtual top and bottom
 		this.weightedQuickUnion = new WeightedQuickUnionUF(size * size + 2);
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				tiles[i][j] = false;
-			}
-			
-		}
 	}
 	
 	/**
@@ -58,12 +54,18 @@ public class Percolation {
 	 */
 	public void open(int i, int j) {
 		
+		//checking the range of indexes. Throw if the the index is < 0 and greater than n
 		checkCoordinateRange(i,j);
 		
+		//TODO
 		tiles[i-1][j-1] = true;
 		
+		//getting the unique id using coordinates
+		int index = coordicnatesToId(i-1, j-1);
+		
+		//creating new WeightedQuickUnion object when row is 1
 		if (i == 1) {
-			weightedQuickUnion.union(coordicnatesToId(i-1, j-1), size * size);
+			weightedQuickUnion.union(index, size * size);
         }
 		
 		//connecting tiles with it's neighboring tiles
@@ -74,27 +76,27 @@ public class Percolation {
         
         //opening left of Y
         if (leftSideOfYCoordinate > 0 && isOpen(i, leftSideOfYCoordinate)) {
-        	weightedQuickUnion.union(coordicnatesToId(i - 1, j - 1), coordicnatesToId(i - 1, leftSideOfYCoordinate - 1));
+        	weightedQuickUnion.union(index, coordicnatesToId(i - 1, leftSideOfYCoordinate - 1));
         }
         
         //opening right of Y
         if (rightSideOfYCoordinate <= size && isOpen(i, rightSideOfYCoordinate)) {
-        	weightedQuickUnion.union(coordicnatesToId(i - 1, j - 1), coordicnatesToId(i - 1, rightSideOfYCoordinate + 1));
+        	weightedQuickUnion.union(index, coordicnatesToId(i - 1, rightSideOfYCoordinate + 1));
         }
         
         //Opening top of X
         if (uperSideOfXCoordinate > 0 && isOpen(uperSideOfXCoordinate, j)) {
-        	weightedQuickUnion.union(coordicnatesToId(i - 1, j - 1), coordicnatesToId(uperSideOfXCoordinate + 1, j - 1));
+        	weightedQuickUnion.union(index, coordicnatesToId(uperSideOfXCoordinate + 1, j - 1));
         }
         
         //opening bottom of X
         if (LowerSideOfXCoordinate <= size && isOpen(LowerSideOfXCoordinate, j)) {
-        	weightedQuickUnion.union(coordicnatesToId(i -1, j - 1), coordicnatesToId(LowerSideOfXCoordinate - 1, j - 1));
+        	weightedQuickUnion.union(index, coordicnatesToId(LowerSideOfXCoordinate - 1, j - 1));
         }
         
         // All the open tiles in the last row (i == n) will be connected to n * n + 1
         if (i == size) {
-        	weightedQuickUnion.union(coordicnatesToId(i-1, j-1), size * size + 1);
+        	weightedQuickUnion.union(index, size * size + 1);
         }
 	}
 	
@@ -162,5 +164,26 @@ public class Percolation {
 	public boolean percolates() {
 		int coordinateId = size * size;
         return weightedQuickUnion.connected(coordinateId, coordinateId + 1);
+	}
+	
+	public static void main(String[] args) {
+		Percolation perc = new Percolation(10);
+        perc.open(1, 1);
+        perc.open(2, 1);
+        perc.open(2, 2);
+        perc.open(2, 5);
+        perc.open(7, 9);
+        perc.open(3, 8);
+        perc.open(2, 1);
+        perc.open(3, 1);
+        perc.open(4, 1);
+        perc.open(5, 1);
+        perc.open(6, 1);
+        perc.open(7, 1);
+        perc.open(8, 1);
+        perc.open(9, 1);
+        perc.open(10, 1);
+        PercolationVisualizer.draw(perc, 10);
+        System.out.println(perc.percolates());
 	}
 }

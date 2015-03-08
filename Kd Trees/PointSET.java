@@ -1,7 +1,6 @@
 import java.util.Stack;
 
 public class PointSET {
-	
 	private SET<Point2D> set;
 	
 	// construct an empty set of points
