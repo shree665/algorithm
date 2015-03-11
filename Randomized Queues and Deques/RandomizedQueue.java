@@ -65,8 +65,10 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		 
 		 n--;
 		 
-		// shrink array if necessary when the length of an array is one quater
-		if (n > 0 && n == queue.length/4) resize(queue.length/2);
+		// shrink array if necessary when the length of an array is one quarter
+		if (n > 0 && n == queue.length/4) {
+			resize(queue.length/2);
+		}
 		 
 		return item;
 	 }

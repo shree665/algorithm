@@ -29,7 +29,7 @@ public class Deque<Item> implements Iterable<Item> {
 		return n == 0;
 	}
 	
-	// return the number of items on the deque
+	// return the number of items on the Deque
 	public int size() {
 		return n;
 	}
@@ -88,7 +88,7 @@ public class Deque<Item> implements Iterable<Item> {
 		if (isEmpty()) {
 			first = last = null;
 		} else {
-			first.previous = null;
+			first.previous = null; //to prevent loitering
 		}
 		return item;
 	}
