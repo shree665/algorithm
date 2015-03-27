@@ -1,4 +1,5 @@
 
+@SuppressWarnings("rawtypes")
 public class BottomUpMergeSort {
 
 	private static Comparable[] aux;
