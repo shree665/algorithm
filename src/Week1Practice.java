@@ -2,6 +2,7 @@
 
 public class Week1Practice {
 	
+	//find the great common denometor of two numbers
 	public int gcd(int p, int q){
 		if (q==0) {
 			return p;
@@ -12,6 +13,7 @@ public class Week1Practice {
 		}
 	}
 	
+	//returns the maximum value of a provided array
 	public Double maxValueInArray(Double[] a){
 		Double max  = a[0];
 		for(int i=1; i< a.length; i++){
@@ -22,6 +24,7 @@ public class Week1Practice {
 		return max;
 	}
 	
+	//returns the average of the double array
 	public Double averageValueOfArray(Double[] a){
 		int n = a.length;
 		Double sum = 0.0;
@@ -31,6 +34,7 @@ public class Week1Practice {
 		return sum/n;
 	}
 	
+	//method to copy the provided double array
 	public Double[] copyArray(Double[] a){
 		int n = a.length;
 		Double[] b = new Double[n];
@@ -40,6 +44,7 @@ public class Week1Practice {
 		return b;
 	}
 	
+	//method to reversed the provided array
 	public Double[] reverseArray(Double[] a){
 		int n = a.length;
 		for (int i = 0; i < n/2; i++) {
@@ -50,9 +55,10 @@ public class Week1Practice {
 		return a;
 	}
 	
+	//is the provided number is prime number
 	public boolean isPrime(int n){
 		
-		//check if the number is mulitple of 2
+		//check if the number is multiple of 2
 		if (n % 2 == 0) {
 			return false;
 		}
@@ -68,7 +74,7 @@ public class Week1Practice {
 		}
 	}
 	
-	
+	//method to calculate the square root of a provided number
 	public Double sqrt(Double a){
 		if (a < 0) {
 			return Double.NaN;
@@ -83,7 +89,7 @@ public class Week1Practice {
 		}
 	}
 	/*
-	 * Is the string is a palindrome
+	 * Is the string is a pallindrome
 	 */
 	public Boolean isPalindrome(String s){
 		int n = s.length();
@@ -107,6 +113,7 @@ public class Week1Practice {
 		return true;
 	}
 	
+	//client unit case
 	public static void main(String[] args) {
 		int[] a = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24};
 		Week1Practice wp = new Week1Practice();

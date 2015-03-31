@@ -1,0 +1,12 @@
+# of bytes that the primitive data type in java takes in typical case
+boolean	1
+byte	1
+char	2
+int		4
+float	4
+long	8
+double	8
+
+How much memory will take by object?
+--> Memory will be differenciate by object by object. The smallest object will take 24 bytes of memory. The more private variable it has, the 
+memory it will take.
