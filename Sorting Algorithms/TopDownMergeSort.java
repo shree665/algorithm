@@ -1,6 +1,7 @@
 
 @SuppressWarnings("rawtypes")
 public class TopDownMergeSort {
+	
 	private static Comparable[] aux;
 	
 	public static void sort(Comparable[] a) {

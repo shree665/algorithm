@@ -1,5 +1,6 @@
 
 public class HeapPriorityQueue<Key extends Comparable<Key>> {
+	
 	//heap-ordered complete binary tree
 	private Key[] priorityQueue;
 	private int n = 0;
@@ -44,12 +45,16 @@ public class HeapPriorityQueue<Key extends Comparable<Key>> {
 	public Key deleteMax() {
 		//retrieve maximum key from top
 		Key max = priorityQueue[1];
+		
 		//exchange with last item
 		exch(1, n--);
+		
 		//avoiding loitering
 		priorityQueue[n+1] = null;
+		
 		//restoring heap property
 		sink(1);
+		
 		return max;
 	}
 
@@ -64,8 +69,8 @@ public class HeapPriorityQueue<Key extends Comparable<Key>> {
 				break;
 			}
 			exch(i,j);
+			
 			i = j;
 		}
-		
 	}
 }
